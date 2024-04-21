@@ -1,10 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import Link from 'next/link'
-import Image from 'next/image'
-import logo from '../public/ttjs.png'
-import logom from '../public/ttjm.png'
-import logol from '../public/ttjl.png'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -21,20 +17,25 @@ export default function RootLayout({
       <body>
         <header>
           <Link href='#'>
-              <img className='logo mobilelogo'
+              <img className='logo onlymobile'
               src='ttjm.png'
               alt="Thrill Top Journeys Logo"
             />
           </Link>
-          <input type="checkbox" id="nav-toggle" className='nav-toggle'/>
-          <label htmlFor='nav-toggle' className='nav-toggle-label'>
-            <div></div><div></div>
-          </label>
+          <div className='nav-right onlymobile'>
+            <Link href='#' role="wishlist" >
+              <img src='heart-fat.svg'/>  
+            </Link>
+            <input type="checkbox" id="nav-toggle" className='nav-toggle'/>
+            <label htmlFor='nav-toggle' className='nav-toggle-label'>
+              <div></div><div></div>
+            </label>
+          </div>
 
         <nav className='globalnav'>
             <ul>
               <li><Link href='#'>
-                <img className='logo bigscreenlogo'
+                <img className='logo onlywide'
                 src='ttjm.png'
                 alt="Thrill Top Journeys Logo"
               />
@@ -44,13 +45,15 @@ export default function RootLayout({
               <li><Link href='#'>Solo Travel</Link></li>
               <li><Link href='#'>Offers</Link></li>
               <li><Link href='#'>Contact Us</Link></li>
-              <li><Link href='#'>
-                <img src='heart-fat.svg'/>  
-              </Link></li>
+              <li>
+                <Link href='#' role='wishlist' className='onlywide'>
+                  <img src='heart-fat.svg' />  
+                </Link>
+              </li>
             </ul>
         </nav>
         </header>
-        <main>
+        <main className='maincontent'>
           {children}
         </main>
       </body>
