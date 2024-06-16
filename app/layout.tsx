@@ -17,28 +17,28 @@ export default function RootLayout({
       <body>
         <header>
           <Link href='#'>
-              <img className='logo onlymobile'
+            <img className='logo onlymobile'
               src='ttjm.png'
               alt="Thrill Top Journeys Logo"
             />
           </Link>
           <div className='nav-right onlymobile'>
             <Link href='#' role="wishlist" >
-              <img src='heart-fat.svg'/>  
+              <img src='heart-fat.svg' />
             </Link>
-            <input type="checkbox" id="nav-toggle" className='nav-toggle'/>
+            <input type="checkbox" id="nav-toggle" className='nav-toggle' />
             <label htmlFor='nav-toggle' className='nav-toggle-label'>
               <div></div><div></div>
             </label>
           </div>
 
-        <nav className='globalnav'>
+          <nav className='globalnav'>
             <ul>
               <li><Link href='#'>
                 <img className='logo onlywide'
-                src='ttjm.png'
-                alt="Thrill Top Journeys Logo"
-              />
+                  src='ttjm.png'
+                  alt="Thrill Top Journeys Logo"
+                />
               </Link></li>
               <li><Link href='#'>Group Tours</Link></li>
               <li><Link href='#'>Inspirations</Link></li>
@@ -47,15 +47,53 @@ export default function RootLayout({
               <li><Link href='#'>Contact Us</Link></li>
               <li>
                 <Link href='#' role='wishlist' className='onlywide'>
-                  <img src='heart-fat.svg' />  
+                  <img src='heart-fat.svg' />
                 </Link>
               </li>
             </ul>
-        </nav>
+          </nav>
         </header>
         <main className='maincontent'>
           {children}
         </main>
+        <h2></h2>
+        <footer>
+          <div>
+            <Link href="#">Thrill Top Journeys</Link>
+            <ul role="list" aria-label="Social links" className='social-links' >
+              <li><Link aria-label="facebook" href="#"><img src='/facebook.svg' /></Link></li>
+              <li><Link aria-label="youtube" href="#"><img src='/youtube.svg' /></Link></li>
+              <li><Link aria-label="twitter" href="#"><img src='/twitterx.svg' /></Link></li>
+              <li><Link aria-label="instagram" href="#"><img src='/instagram.svg' /></Link></li>
+              <li><Link aria-label="whatsapp" href="#"><img src='/whatsapp.svg' /></Link></li>
+            </ul>
+          </div>
+          <div>
+            <nav className="footer-nav">
+              <ul className="" aria-label="Footer" role="list">
+                <li><Link href="#">Home</Link></li>
+                <li><Link href="#">FAQs</Link></li>
+                <li><Link href="#">Products</Link></li>
+                <li><Link href="#">Contact Us</Link></li>
+                <li><Link href="#">Careers</Link></li>
+                <li><Link href="#">Community</Link></li>
+                <li><Link href="#">Privacy Policy</Link></li>
+              </ul>
+            </nav>
+          </div>
+          <div>
+            <form action="" className='form-newsletter'>
+              <h5> Sign up to our newsletter</h5>
+              <p>You'll be the first to hear about the latest travel news,<br/>destination insights and special offers.</p>
+              <div className='signup-newsletter'>
+                <input type="email" placeholder='Your email'/>
+                <button className="button">Sign up</button>
+              </div>
+              {/* <p>Copyright 2024. All Rights Reserved</p> */}
+            </form>
+          </div>
+        </footer>
+
       </body>
     </html>
   )
