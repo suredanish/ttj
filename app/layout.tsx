@@ -18,13 +18,13 @@ export default function RootLayout({
         <header>
           <Link href='#'>
             <img className='logo onlymobile'
-              src='ttjm.png'
+              src='/ttjm.png'
               alt="Thrill Top Journeys Logo"
             />
           </Link>
           <div className='nav-right onlymobile'>
             <Link href='#' role="wishlist" >
-              <img src='heart-fat.svg' />
+              <img src='/heart-fat.svg' />
             </Link>
             <input type="checkbox" id="nav-toggle" className='nav-toggle' />
             <label htmlFor='nav-toggle' className='nav-toggle-label'>
@@ -36,18 +36,18 @@ export default function RootLayout({
             <ul>
               <li><Link href='#'>
                 <img className='logo onlywide'
-                  src='ttjm.png'
+                  src='/ttjm.png'
                   alt="Thrill Top Journeys Logo"
                 />
               </Link></li>
               <li><Link href='#'>Group Tours</Link></li>
               <li><Link href='#'>Inspirations</Link></li>
               <li><Link href='#'>Solo Travel</Link></li>
-              <li><Link href='#'>Offers</Link></li>
+              <li><Link href='#'>Packages</Link></li>
               <li><Link href='#'>Contact Us</Link></li>
               <li>
                 <Link href='#' role='wishlist' className='onlywide'>
-                  <img src='heart-fat.svg' />
+                  <img src='/heart-fat.svg' />
                 </Link>
               </li>
             </ul>
