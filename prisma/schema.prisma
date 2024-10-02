@@ -14,10 +14,12 @@ model Packages {
   id String @id @default(cuid())
   title String
   desc String
+  duration String @default("1:1")
   destinations String
   priceSingle Decimal
   priceDuo Decimal
   priceGroupMember Decimal
+  priority Int @default(100)
   updatedAt DateTime @updatedAt
   createdAt DateTime @default(now())
 }
