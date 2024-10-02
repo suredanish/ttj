@@ -1,4 +1,17 @@
-export default function ({ }) {
+import { usePopup } from "@/contexts/PopupContext";
+import {packages} from "@/content/packages"
+import { PopupTrigger } from "@/contexts/PopupTrigger";
+import { PrismaClient } from "@prisma/client";
+import { DestinationsType, PackageType } from "@/types/package";
+interface packageType {
+    title: string;
+  }
+
+export default async function ({ }) {
+    
+    const p : PackageType | null = await new PrismaClient().packages.findUnique({where: {id: "cm1m128y40000vu50552pxevv"}});
+    const content : DestinationsType = JSON.parse(p?.destinations ?? '[]')
+    console.log(content)
     return (<>
         <section className="wall-section">
 
@@ -9,108 +22,27 @@ export default function ({ }) {
             <div className="content" aria-label="package brief"></div>
         </section>
 
-        <h2 className="section-header package-title">Sunmarg, Gulmarg and Muchmore and you</h2>
+        <h2 className="section-header package-title">{p?.title}</h2>
 
         <section className="package-section">
             <div className="package">
                 <div className="package-body">
-                    <div className="package-summary">Same summary which was on package card Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, nihil dolorum et saepe ipsa culpa debitis nesciunt ut tempora praesentium.</div>
+                    <div className="package-summary">{p?.desc}</div>
                     <div className="package-content">
-                        <div id="Day 1 - Srinager" className="package-day">
-                            <h3>Day 1 - Srinager</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id ipsam placeat animi blanditiis, eius nostrum quam molestias hic adipisci iure quis aut ut ab. Aut suscipit animi voluptatibus. Nemo magni quisquam rerum eum accusantium omnis nobis tenetur laudantium voluptatibus repellat, necessitatibus quia aperiam. Ea, velit aliquam et ratione molestias aut!</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium excepturi, sapiente sit inventore deserunt optio pariatur tenetur, repudiandae at consequatur totam hic. Consectetur accusantium, quisquam vel reiciendis corporis in sequi inventore ullam quos ratione fugit doloremque nobis quam necessitatibus veniam laboriosam autem vero impedit exercitationem unde modi facere? Reprehenderit quidem expedita odio atque id doloribus explicabo autem ut quae vero!</p>
+                        {content.map( d => 
+                        <div id={d.title} className="package-day">
+                            <h3>{d.title}</h3>
+                            {d.content.map( c => <p>{c}</p>)}
                             <div className="package-day-gallery">
+                                {d.images.map(i => 
                                 <div className="img-and-title">
-                                    <div className="img-container"><img src="/scene.png" alt="green-fields" /></div>
-                                    <div className="img-title">dood pather</div>
+                                    <div className="img-container"><img src={"/" + i} alt={i.replace(/\..*$/, "")} /></div>
+                                    <div className="img-title">{i.replace(/\..*$/, "")}</div>
                                 </div>
-                                <div className="img-and-title">
-                                    <div className="img-container"><img src="/scene.png" alt="green-fields" /></div>
-                                    <div className="img-title">dood pather</div>
-                                </div>
-                                <div className="img-and-title">
-                                    <div className="img-container"><img src="/scene.png" alt="green-fields" /></div>
-                                    <div className="img-title">dood pather</div>
-                                </div>
-                                <div className="img-and-title">
-                                    <div className="img-container"><img src="/scene.png" alt="green-fields" /></div>
-                                    <div className="img-title">dood pather</div>
-                                </div>
-                                <div className="img-and-title">
-                                    <div className="img-container"><img src="/scene.png" alt="green-fields" /></div>
-                                    <div className="img-title">dood pather</div>
-                                </div>
-
+                                )}
                             </div>
                         </div>
-
-                        <div id="Day 2 - Zukis Manz" className="package-day">
-                            <h3>Day 2 - Zukis Manz</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id ipsam placeat animi blanditiis, eius nostrum quam molestias hic adipisci iure quis aut ut ab. Aut suscipit animi voluptatibus. Nemo magni quisquam rerum eum accusantium omnis nobis tenetur laudantium voluptatibus repellat, necessitatibus quia aperiam. Ea, velit aliquam et ratione molestias aut!</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium excepturi, sapiente sit inventore deserunt optio pariatur tenetur, repudiandae at consequatur totam hic. Consectetur accusantium, quisquam vel reiciendis corporis in sequi inventore ullam quos ratione fugit doloremque nobis quam necessitatibus veniam laboriosam autem vero impedit exercitationem unde modi facere? Reprehenderit quidem expedita odio atque id doloribus explicabo autem ut quae vero!</p>
-                            <div className="package-day-gallery">
-                                <div className="img-and-title">
-                                    <div className="img-container"><img src="/scene.png" alt="green-fields" /></div>
-                                    <div className="img-title">dood pather</div>
-                                </div>
-                                <div className="img-and-title">
-                                    <div className="img-container"><img src="/scene.png" alt="green-fields" /></div>
-                                    <div className="img-title">dood pather</div>
-                                </div>
-                                <div className="img-and-title">
-                                    <div className="img-container"><img src="/scene.png" alt="green-fields" /></div>
-                                    <div className="img-title">dood pather</div>
-                                </div>
-                                <div className="img-and-title">
-                                    <div className="img-container"><img src="/scene.png" alt="green-fields" /></div>
-                                    <div className="img-title">dood pather</div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div id="Day 3 - Khal Kakin Lath Vuchne" className="package-day">
-                            <h3>Day 3 - khal kakin lath vuchne</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id ipsam placeat animi blanditiis, eius nostrum quam molestias hic adipisci iure quis aut ut ab. Aut suscipit animi voluptatibus. Nemo magni quisquam rerum eum accusantium omnis nobis tenetur laudantium voluptatibus repellat, necessitatibus quia aperiam. Ea, velit aliquam et ratione molestias aut!</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium excepturi, sapiente sit inventore deserunt optio pariatur tenetur, repudiandae at consequatur totam hic. Consectetur accusantium, quisquam vel reiciendis corporis in sequi inventore ullam quos ratione fugit doloremque nobis quam necessitatibus veniam laboriosam autem vero impedit exercitationem unde modi facere? Reprehenderit quidem expedita odio atque id doloribus explicabo autem ut quae vero!</p>
-                            <div className="package-day-gallery">
-                                <div className="img-and-title">
-                                    <div className="img-container"><img src="/scene.png" alt="green-fields" /></div>
-                                    <div className="img-title">dood pather</div>
-                                </div>
-                                <div className="img-and-title">
-                                    <div className="img-container"><img src="/scene.png" alt="green-fields" /></div>
-                                    <div className="img-title">dood pather</div>
-                                </div>
-                                <div className="img-and-title">
-                                    <div className="img-container"><img src="/scene.png" alt="green-fields" /></div>
-                                    <div className="img-title">dood pather</div>
-                                </div>
-                                <div className="img-and-title">
-                                    <div className="img-container"><img src="/scene.png" alt="green-fields" /></div>
-                                    <div className="img-title">dood pather</div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div id="Day 4 - Farooq Wazas Sath Aer Chori" className="package-day">
-                            <h3>Day 4 - Farooq Wazas sath aer chori</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id ipsam placeat animi blanditiis, eius nostrum quam molestias hic adipisci iure quis aut ut ab. Aut suscipit animi voluptatibus. Nemo magni quisquam rerum eum accusantium omnis nobis tenetur laudantium voluptatibus repellat, necessitatibus quia aperiam. Ea, velit aliquam et ratione molestias aut!</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium excepturi, sapiente sit inventore deserunt optio pariatur tenetur, repudiandae at consequatur totam hic. Consectetur accusantium, quisquam vel reiciendis corporis in sequi inventore ullam quos ratione fugit doloremque nobis quam necessitatibus veniam laboriosam autem vero impedit exercitationem unde modi facere? Reprehenderit quidem expedita odio atque id doloribus explicabo autem ut quae vero!</p>
-                            <div className="package-day-gallery">
-                                <div className="img-and-title">
-                                    <div className="img-container"><img src="/scene.png" alt="green-fields" /></div>
-                                    <div className="img-title">dood pather</div>
-                                </div>
-                                <div className="img-and-title">
-                                    <div className="img-container"><img src="/scene.png" alt="green-fields" /></div>
-                                    <div className="img-title">dood pather</div>
-                                </div>
-
-                            </div>
-                        </div>
+                        )}
                     </div>
                 </div>
                 <div className="package-actions">
@@ -152,7 +84,7 @@ export default function ({ }) {
                                 <img src="/hiking.svg" alt="person hiking" />
                             </div>
                             <div>
-                                <div className="original-price"> <span>₹ 32,999</span> <span color-red >25% OFF</span></div>
+                                <div className="original-price"> <span>₹ 32,999</span> <span >25% OFF</span></div>
                                 <div className="current-price"> ₹ 25,999 </div>
                                 <div className="price-tax-info">Including applicable taxes</div>
                             </div>
@@ -162,7 +94,7 @@ export default function ({ }) {
                                 <img src="/couple.svg" alt="couples icon" />
                             </div>
                             <div>
-                                <div className="original-price"> <span>₹ 32,999</span> <span color-red >25% OFF</span></div>
+                                <div className="original-price"> <span>₹ 32,999</span> <span >25% OFF</span></div>
                                 <div className="current-price"> ₹ 25,999 </div>
                                 <div className="price-tax-info">Including applicable taxes</div>
                             </div>
@@ -173,7 +105,7 @@ export default function ({ }) {
                                 <img src="/group2.svg" alt="couples icon" />
                             </div>
                             <div>
-                                <div className="original-price"> <span>₹ 32,999</span> <span color-red >25% OFF</span></div>
+                                <div className="original-price"> <span>₹ 32,999</span> <span >25% OFF</span></div>
                                 <div className="current-price"> ₹ 25,999 </div>
                                 <div className="price-tax-info">Including applicable taxes</div>
                             </div>
@@ -182,7 +114,7 @@ export default function ({ }) {
                         <div className="customer-input">
                             <form id="form-customer-input">
                                 <label id="label-customer-phone">
-                                    <input type="tel" name="phone" placeholder="Call me on this number" pattern="[0-9]{10}" />
+                                    <input type="tel" name="phone" placeholder="I'm intrested, call me on this number" pattern="[0-9]{10}" />
                                 </label>
                                 <input type="button" value="CALL ME" />
                             </form>
@@ -190,6 +122,40 @@ export default function ({ }) {
                     </div>
                 </div>
             </div>
+        <PopupTrigger content = {<div className="popup-bottom">
+        <div className="s-customer-actions">
+            <div className="s-package-price">
+                <div className="s-package-size-pic">
+                    <img src="/couple.svg" alt="couples icon" />
+                </div>
+                <div>
+                    <div className="s-original-price"> <span>₹ 32,999</span> <span  >25% OFF</span></div>
+                    <div className="s-current-price"> ₹ 25,999 </div>
+                    <div className="s-price-tax-info">Including applicable taxes</div>
+                </div>
+            </div>
+
+            <div className="s-package-price">
+                <div className="s-package-size-pic">
+                    <img src="/group2.svg" alt="couples icon" />
+                </div>
+                <div>
+                    <div className="s-original-price"> <span>₹ 32,999</span> <span  >25% OFF</span></div>
+                    <div className="s-current-price"> ₹ 25,999 </div>
+                    <div className="s-price-tax-info">Including applicable taxes</div>
+                </div>
+            </div>
+        </div>
+        <div className="s-customer-input">
+            <form id="form-customer-input-mobile">
+                <label id="label-customer-phone">
+                    <input type="tel" name="phone" placeholder="I'm intrested, call me on this number" pattern="[0-9]{10}" />
+                </label>
+                <input type="button" value="CALL ME!" />
+            </form>
+        </div>
+    </div>}/>
+
         </section>
     </>)
 } 
