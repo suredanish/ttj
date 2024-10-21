@@ -1,20 +1,12 @@
+# ThrillOP
+> Tour travel website for kashmir
+
+
+### Database ER Diagram 
+![ER Diagram](https://www.plantuml.com/plantuml/dpng/fP91Yzim48Nl-XNJz51GCQIXkVIqxZgq1cUxfDxUn_RK5YjBgIKNJBp_lR8I4YSua9AR-Dwy6Tve7ep5nhQrPEziHJL1tcMwAGFTMYaKCL9Ms0vcpvY_Oacp7GFuoBaeE8SlyF8IHmvmxeeaUVGht3n-3pV1Skw5Wan-nXVBfHUCbZh8jR5UZLQFyJfCzfRsYb1JdL5pnOITyV2d8qdyb7ggH5dP2PutX9Rs6Q8mNQNnUiNUs37jLwdBQr4LrfD9CrrqOmxhwAPP4NRtR_NJVF7vfcdF4dEwDThzurBqUxoODJLgCNU-otCRxE3yxpdVxaamwkEvnNBCnaqImc86_vdLMBIjSShPmVnfgUacxtXRQKLUINuyVVE8QXJolBSFzm4Y-YsKK2LiIA8LMfbAR0qxf8M-3_GE8koSLHWGYWrlHuCT-8zpF4S56S5VOOIbWWsNEbJq_R6YGiDE-uCt7GnTtTDfKgXNAYvafnx0gO8za2hQMlu3)
+
+
 <<<<<<< HEAD
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
@@ -124,3 +116,6 @@ PackageTag ||--|| Tag : linked
 PackageTag ||-|| Package : linked
 Lead }o--|| Review : can have
 @enduml
+=======
+$$\color{green}\textsf{A } Thrill~Top~Journeys \textsf{ Product}$$
+>>>>>>> d8cff6d (Update README.md)
