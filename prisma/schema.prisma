@@ -1,25 +1,119 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// schema.prisma
 
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-model Packages {
-  id String @id @default(cuid())
-  title String
-  desc String
-  duration String @default("1:1")
-  destinations String
-  priceSingle Decimal
-  priceDuo Decimal
-  priceGroupMember Decimal
-  priority Int @default(100)
-  updatedAt DateTime @updatedAt
-  createdAt DateTime @default(now())
+model Package {
+  id         String       @id @default(uuid())
+  title      String       @db.VarChar(50)
+  desc       String       @db.VarChar(255)
+  soloCost   Decimal
+  duoCost    Decimal
+  memberCost Decimal
+  days       Int          @db.SmallInt
+  nights     Int          @db.SmallInt
+  created    DateTime     @default(now())
+  DayLinks   PackageDay[]
+  TagLinks   PackageTag[]
+}
+
+model PackageDay {
+  packageId String
+  dayId     String
+  Packages Package @relation(fields: [packageId], references: [id], onDelete: Cascade)
+  Days     Day     @relation(fields: [dayId], references: [id], onDelete: Cascade)
+
+  @@id([packageId, dayId])
+}
+
+model Day {
+  id            String       @id @default(uuid())
+  title         String       @db.VarChar(50)
+  desc          String       @db.VarChar(1023)
+  created       DateTime     @default(now())
+  PlaceLinks    DayPlace[]
+  PackagesLinks PackageDay[]
+  packageId     String?
+}
+
+model DayPlace {
+  dayId   String
+  placeId String
+  Days   Day   @relation(fields: [dayId], references: [id], onDelete: Cascade)
+  Places Place @relation(fields: [placeId], references: [id], onDelete: Cascade)
+
+  @@id([dayId, placeId])
+}
+
+model Place {
+  id        String     @id @default(uuid())
+  name      String     @db.VarChar(50)
+  desc      String     @db.VarChar(1024)
+  created   DateTime   @default(now())
+  blog      Blog? // One-to-one relationship with Blog
+  DaysLinks DayPlace[]
+}
+
+model Blog {
+  id      String   @id @default(uuid())
+  name    String   @db.VarChar(50)
+  body    String   @db.Text
+  created DateTime @default(now())
+  Place   Place    @relation(fields: [placeId], references: [id])
+  placeId String   @unique
+}
+
+model Tag {
+  id           String       @id @default(uuid())
+  name         String       @db.VarChar(20)
+  PackageLinks PackageTag[]
+}
+
+model PackageTag {
+  packageId String
+  tagId     String
+  Package Package @relation(fields: [packageId], references: [id], onDelete: Cascade)
+  Tag     Tag     @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([packageId, tagId])
+  @@index([tagId], name: "idx_PackageTag_tagId")
+  @@index([packageId], name: "idx_packageTag_packageId")
+}
+
+model Lead {
+  id     String @id @default(uuid())
+  person String @db.VarChar(50)
+  status LeadStatus @default(NEW)
+  query  String @db.VarChar(511)
+  phone  BigInt
+  email  String @db.VarChar(50)
+  Review Review[]
+  @@index([phone], name: "idx_lead_phone")
+}
+
+enum LeadStatus {
+  NEW           // Just received, waiting to be reviewed.
+  CONTACTED     // Reached out, waiting for response.
+  IN_DISCUSSION // Actively negotiating or answering queries.
+  QUALIFIED     // Real interest identified.
+  PROPOSAL_SENT // Proposal sent to the lead.
+  NEGOTIATION   // Negotiating terms.
+  WON           // Converted into a deal.
+  LOST          // Didn’t convert.
+  FOLLOW_UP     // Needs a follow-up later.
+  DORMANT       // Inactive for a long time.
+}
+
+model Review {
+  id     String @id @default(uuid())
+  person String @db.VarChar(50)
+  body   String @db.VarChar(511)
+  leadId String
+  Lead Lead @relation(fields: [leadId], references: [id])
 }

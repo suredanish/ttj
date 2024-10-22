@@ -10,7 +10,8 @@ export default async function offerContainerSection () {
         take: 3
     });
 
-  return (
+  return (<>
+    <h2 className='section-header' >Top Packages</h2>
     <section className='offers-container'>
         {
             topPackages.map( p => 
@@ -26,5 +27,5 @@ export default async function offerContainerSection () {
             )
         }
       </section>
-  );
+    </>);
 }

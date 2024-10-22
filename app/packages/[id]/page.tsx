@@ -1,17 +1,11 @@
-import { usePopup } from "@/contexts/PopupContext";
-import {packages} from "@/content/packages"
 import { PopupTrigger } from "@/contexts/PopupTrigger";
-import { PrismaClient } from "@prisma/client";
-import { DestinationsType, PackageType } from "@/types/package";
-interface packageType {
-    title: string;
-  }
+import db from "@/prisma/db";
+import { Ipackage } from "@/prisma/types";
+
 
 export default async function ({ }) {
-    
-    const p : PackageType | null = await new PrismaClient().packages.findUnique({where: {id: "cm1m128y40000vu50552pxevv"}});
-    const content : DestinationsType = JSON.parse(p?.destinations ?? '[]')
-    console.log(content)
+    const p: Ipackage | null = (await db.packages.findFirst()) as Ipackage | null;
+    console.log(p?.destinationsJsonList)
     return (<>
         <section className="wall-section">
 
@@ -29,7 +23,7 @@ export default async function ({ }) {
                 <div className="package-body">
                     <div className="package-summary">{p?.desc}</div>
                     <div className="package-content">
-                        {content.map( d => 
+                        {p?.destinationsJsonList?.map( d => 
                         <div id={d.title} className="package-day">
                             <h3>{d.title}</h3>
                             {d.content.map( c => <p>{c}</p>)}
@@ -84,8 +78,8 @@ export default async function ({ }) {
                                 <img src="/hiking.svg" alt="person hiking" />
                             </div>
                             <div>
-                                <div className="original-price"> <span>₹ 32,999</span> <span >25% OFF</span></div>
-                                <div className="current-price"> ₹ 25,999 </div>
+                                <div className="original-price"> <span>₹32,999</span> <span >25% OFF</span></div>
+                                <div className="current-price"> ₹25,999 </div>
                                 <div className="price-tax-info">Including applicable taxes</div>
                             </div>
                         </div>
@@ -94,8 +88,8 @@ export default async function ({ }) {
                                 <img src="/couple.svg" alt="couples icon" />
                             </div>
                             <div>
-                                <div className="original-price"> <span>₹ 32,999</span> <span >25% OFF</span></div>
-                                <div className="current-price"> ₹ 25,999 </div>
+                                <div className="original-price"> <span>₹32,999</span> <span >25% OFF</span></div>
+                                <div className="current-price"> ₹25,999 </div>
                                 <div className="price-tax-info">Including applicable taxes</div>
                             </div>
                         </div>
@@ -105,8 +99,8 @@ export default async function ({ }) {
                                 <img src="/group2.svg" alt="couples icon" />
                             </div>
                             <div>
-                                <div className="original-price"> <span>₹ 32,999</span> <span >25% OFF</span></div>
-                                <div className="current-price"> ₹ 25,999 </div>
+                                <div className="original-price"> <span>₹32,999</span> <span >25% OFF</span></div>
+                                <div className="current-price"> ₹25,999 </div>
                                 <div className="price-tax-info">Including applicable taxes</div>
                             </div>
                         </div>
@@ -129,8 +123,8 @@ export default async function ({ }) {
                     <img src="/couple.svg" alt="couples icon" />
                 </div>
                 <div>
-                    <div className="s-original-price"> <span>₹ 32,999</span> <span  >25% OFF</span></div>
-                    <div className="s-current-price"> ₹ 25,999 </div>
+                    <div className="s-original-price"> <span>₹32,999</span> <span  >25% OFF</span></div>
+                    <div className="s-current-price"> ₹25,999 </div>
                     <div className="s-price-tax-info">Including applicable taxes</div>
                 </div>
             </div>
@@ -140,8 +134,8 @@ export default async function ({ }) {
                     <img src="/group2.svg" alt="couples icon" />
                 </div>
                 <div>
-                    <div className="s-original-price"> <span>₹ 32,999</span> <span  >25% OFF</span></div>
-                    <div className="s-current-price"> ₹ 25,999 </div>
+                    <div className="s-original-price"> <span>₹32,999</span> <span  >25% OFF</span></div>
+                    <div className="s-current-price"> ₹25,999 </div>
                     <div className="s-price-tax-info">Including applicable taxes</div>
                 </div>
             </div>

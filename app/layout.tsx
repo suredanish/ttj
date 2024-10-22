@@ -41,7 +41,7 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
               <li><Link href='#'>Group Tours</Link></li>
               <li><Link href='#'>Inspirations</Link></li>
               <li><Link href='#'>Solo Travel</Link></li>
-              <li><Link href='#'>Packages</Link></li>
+              <li><Link href='packages'>Packages</Link></li>
               <li><Link href='#'>Contact Us</Link></li>
               <li>
                 <Link href='#' role='wishlist' className='onlywide'>
